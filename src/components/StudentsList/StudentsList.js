@@ -10,7 +10,6 @@ const StudentsList = () => {
 
       api.get(endpoints.users)
           .then(({data}) => {
-              console.log(data)
               setStudents(data);
           })
           .catch((error) => {
