@@ -15,6 +15,7 @@ import {
   Scores,
   ScoresWrapper
 } from 'components/StudentForm/StudentForm.styles';
+import { api, endpoints } from 'api';
 
 let grade = yup.number();
 grade
@@ -24,15 +25,25 @@ grade
   .max(6, 'Ocena musi być niższa od 7');
 
 const StudentForm = () => {
-  const [scores, setScores] = useState([4,2,3,4,4,3,4]);
+  const [scores, setScores] = useState([]);
   const [scoreInputValue, setScoreInputValue] = useState('');
   const { register, handleSubmit, watch, errors } = useForm();
-  const onSubmit = data => console.log({ ...data, scores });
   const [average, setAverage] = useState();
+  const onSubmit = ({ name, age, group }) => {
+    api.post(endpoints.users, {
+      name,
+      group,
+      age: parseInt(age, 10),
+      grades: scores,
+    })
+        .then(response => {
+          console.log(response);
+        })
+        .catch( error => {
+          console.log(error);
+        })
+  };
 
-  useEffect(() => {
-    setScores([4,2,3,4,4,3,4]);
-  }, []);
 
   useEffect(() => {
     setAverage(getGradesAvg(scores));
