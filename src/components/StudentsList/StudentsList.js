@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import StudentProfile from 'components/StudentProfile/StudentProfile';
 import { Wrapper } from 'components/SchoolNews/SchoolNews.styles';
-import axios from "axios";
+import { api, endpoints } from 'api';
 
 const StudentsList = () => {
   const [students, setStudents] = useState([]);
 
   useEffect(()=> {
 
-      axios.get('http://localhost:8000/users')
+      api.get(endpoints.users)
           .then(({data}) => {
               console.log(data)
               setStudents(data);
           })
-          // .then(({data}) => {
-          //     console.log(data)
-          //     setStudents(data);
-          // })
           .catch((error) => {
               console.log(error);
           })
