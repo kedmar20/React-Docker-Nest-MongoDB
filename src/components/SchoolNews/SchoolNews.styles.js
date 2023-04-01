@@ -55,8 +55,10 @@ export const ArticleImage = styled.div`
   border-radius: 15px;
   overflow: hidden;
   margin-right: 40px;
-  
+
   img {
+    //width: 120px;
+    height: 120px;
     object-fit: fill;
   }
 `;
