@@ -56,7 +56,7 @@ const [articles, setArticles] = useState([]);
       </Wrapper>
   );
 }
-
+//
 SchoolNews.propTypes = {};
 
 export default SchoolNews;
